@@ -1,0 +1,86 @@
+﻿@model PagedList.IPagedList<ACEmployees.Models.Employee>
+
+@{
+    ViewBag.Title = "Lista de Empleados";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Agregar Nuevo Empleado", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<form id="formEmployeeList" data-ajax-url="/Employees/Index" method="get" data-ajax="true" data-ajax-method="get"
+      data-ajax-mode="replace" data-ajax-update="#employeesindex" data-ajax-complete="onCompletePaging">
+
+    @Html.AntiForgeryToken()
+
+    <hr class="my-1" />
+    <div class="row bg-light mx-0">
+        <div class="col-md-4 pl-md-0 pr-2 my-1">
+            @Html.TextBox("search", null, new { @class = "form-control", autocomplete = "off", placeholder = "Cedula, Nombre, Email o Dirección" })
+        </div>
+        <div class="col-md-2 pl-md-0 pr-2 my-1">
+            @Html.TextBox("start", null, new { @class = "form-control datepicker", autocomplete = "off", placeholder = "Fecha Inicio Contrato" })
+        </div>
+        <div class="col-md-2 pl-md-0 pr-2 my-1">
+            @Html.TextBox("end", null, new { @class = "form-control datepicker", autocomplete = "off", placeholder = "Fecha Final Contrato" })
+        </div>
+        <div class="col-md-2 pl-md-0 my-1">
+            <input type="submit" class="btn btn-primary" value="Buscar" />
+        </div>
+    </div>
+
+    <hr class="mt-1 mb-4" />
+
+    @if (Model != null)
+    {
+        <div id="employeesindex">
+            @Html.Partial("_Index", Model)
+        </div>
+    }
+
+</form>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/bootstrap-datepicker")
+    @Styles.Render("~/Content/bootstrap-datepicker")
+
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/tablesorter/theme.bootstrap_4.min.css" rel="stylesheet" />
+    <script src="~/Scripts/tablesorter/jquery.tablesorter.min.js"></script>
+    <script src="~/Scripts/tablesorter/jquery.tablesorter.widgets.min.js"></script>
+
+    <style type="text/css">
+        ul.pagination {
+            margin-top: 5px;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        $(function () {
+            setTableSorter();
+        });
+
+        $('.datepicker').datepicker({
+            format: "dd/mm/yyyy",
+            language: "es",
+            clearBtn: true,
+            autoclose: true,
+            endDate: new Date()
+        });
+
+        function setTableSorter() {
+            $("#employeetable").tablesorter({
+                theme: 'bootstrap'
+            });
+        }
+
+        function onCompletePaging() {
+            setTableSorter();
+        }
+
+    </script>
+}

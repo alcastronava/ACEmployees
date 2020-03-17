@@ -1,0 +1,231 @@
+﻿@model ACEmployees.Models.Employee
+
+@using ACEmployees.Extensions
+
+@{
+    ViewBag.Title = "Editar Empleado";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.DocumentId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DocumentId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DocumentId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EMail, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EMail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EMail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ContractDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ContractDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ContractDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsFreelance, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsFreelance)
+                        @Html.ValidationMessageFor(model => model.IsFreelance, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PayRate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PayRate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PayRate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        *@
+
+        <div class="row">
+            <div class="form-group col-md-3">
+                @Html.LabelForReq(model => model.DocumentId, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.DocumentId, new { htmlAttributes = new { @class = "form-control", style = "text-transform: uppercase" } })
+                @Html.ValidationMessageFor(model => model.DocumentId, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelForReq(model => model.FullName, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                @Html.LabelForReq(model => model.BirthDate, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control datepicker", placeholder = "dd/mm/yyyy", autocomplete = "on" } })
+                @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelForReq(model => model.Address, htmlAttributes: new { @class = "control-label" })
+                @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @style = "height: 124px" })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        @Html.LabelForReq(model => model.EMail, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.EMail, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EMail, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-12">
+                        @Html.LabelForReq(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control phonemask" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-3">
+                @Html.LabelForReq(model => model.ContractDate, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.ContractDate, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control datepicker", placeholder = "dd/mm/yyyy", autocomplete = "on" } })
+                @Html.ValidationMessageFor(model => model.ContractDate, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-md-2 ">
+                <div class="checkbox float-right">
+                    @Html.LabelFor(model => model.IsFreelance, htmlAttributes: new { @class = "control-label" }) <br />
+                    @Html.EditorFor(model => model.IsFreelance, new { htmlAttributes = new { @style = "display: none" } })
+                    @Html.ValidationMessageFor(model => model.IsFreelance, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div id="payrategrp" class="form-group col-md-3" style="display:none">
+                @Html.LabelForReq(model => model.PayRate, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.PayRate, new { htmlAttributes = new { @class = "form-control twodecimal" } })
+                @Html.ValidationMessageFor(model => model.PayRate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-offset-2 col-md-6">
+                <input type="submit" value="Guardar Cambios" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-outline-primary" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap-datepicker")
+    @Styles.Render("~/Content/bootstrap-datepicker")
+    @Scripts.Render("~/bundles/jquery-mask")
+    @Scripts.Render("~/bundles/bootstrap-toggle")
+    @Styles.Render("~/Content/bootstrap-toggle")
+    @Scripts.Render("~/Scripts/moment.js")
+
+    <script type="text/javascript">
+
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                return this.optional(element) || moment(value, "DD/MM/YYYY", true).isValid();
+            }
+            $.validator.methods.number = function (value, element) {
+                return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+            };
+        });
+
+        $(document).ready(function () {
+            $('.check-box').bootstrapToggle({
+                on: 'Si',
+                off: 'No'
+            })
+
+            $('.twodecimal').mask('#,##0.00', { reverse: true })
+                .attr('placeholder', '0.00');
+
+            $('.phonemask').mask("0000-000-0000", { reverse: true })
+                .attr("placeholder", "0000-000-0000");
+
+            $('#DocumentId').mask('A-#####0000').attr('placeholder', 'V-12345678');
+
+            if( $('#IsFreelance').prop('checked') ) {
+                $('#payrategrp').show();
+            }
+        });
+
+        $('.datepicker').datepicker({
+            format: "dd/mm/yyyy",
+            language: "es",
+            clearBtn: true,
+            autoclose: true,
+            endDate: new Date()
+        });
+
+        $('#IsFreelance').change(function () {
+            var checked = $(this).prop('checked');
+            if (checked) {
+                $('#payrategrp').show();
+            }
+            else {
+                $('#payrategrp').hide();
+            }
+        }).show();
+    </script>
+}

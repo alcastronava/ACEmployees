@@ -1,0 +1,119 @@
+﻿@model ACEmployees.Models.Employee
+
+@using ACEmployees.Extensions
+
+@{
+    ViewBag.Title = "Detalles del Empleado";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.DocumentId)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DocumentId)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FullName)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.BirthDate)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+                <dd>
+                    @Html.DisplayWithBreaksFor(model => model.Address)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.EMail)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EMail)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ContractDate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ContractDate)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.IsFreelance)
+                </dt>
+                <dd>
+                    @Html.DisplayForBool(model => model.IsFreelance)
+                </dd>
+            </dl>
+        </div>
+        @if (Model.IsFreelance)
+        {
+            <div class="col-md-4">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PayRate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PayRate)
+                    </dd>
+                </dl>
+            </div>
+        }
+    </div>
+
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary mr-2" })
+    @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-outline-primary" })
+</p>

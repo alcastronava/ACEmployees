@@ -1,0 +1,12 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">Ha ocurrido un error al procesar su solicitud.</h2>
+<br />
+<p>
+    @Html.ActionLink("Volver a la lista", "Index", "Employees", null, new { @class = "btn btn-outline-primary" })
+</p>

@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Recurso no encontrado";
+}
+
+<h1 class="text-danger">@ViewBag.Title</h1>
+<h2 class="text-danger">La pagina solicitada no ha sido encontrada.</h2>
+<br />
+<p>
+    @Html.ActionLink("Volver a la lista", "Index", "Employees", null, new { @class = "btn btn-outline-primary" })
+</p>
