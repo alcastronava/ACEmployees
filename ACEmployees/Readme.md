@@ -1,4 +1,4 @@
-﻿### Este proyecto fue realizado por Alfredo Castro para el test de Entrepidus, es una mini-webapp para CRUD de Empleados
+﻿### Este proyecto fue realizado por Alfredo Castro, es una mini-webapp para CRUD de Empleados
 
 ## Características 
 * VS 2019 y SQL Server 2019
